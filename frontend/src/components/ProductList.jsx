@@ -8,10 +8,23 @@ export default function Products(){
 
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch('http://localhost:3000/api/v1/products');
-      const resData = await response.json();
-      setProducts(resData.products);
-      setLoading(false);
+      try{
+        const response = await fetch('http://localhost:3000/api/v1/products',{
+          method: 'GET',
+          mode: 'no-cors'
+        });
+
+        if(!response.ok){
+          throw new Error("Could not retreive products")
+        }
+
+        const resData = await response.json();
+        setProducts(resData);
+        console.log(resData)
+        setLoading(false);
+      } catch(error){
+        setLoading(false);
+      }
     }
 
     fetchProducts();
