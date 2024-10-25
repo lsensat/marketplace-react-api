@@ -9,10 +9,9 @@ export default function Products(){
   useEffect(() => {
     async function fetchProducts() {
       try{
-        const response = await fetch('http://localhost:3000/api/v1/products',{
-          method: 'GET',
-          mode: 'no-cors'
-        });
+        const response = await fetch('http://localhost:3000/api/v1/products');
+
+        console.log(response)
 
         if(!response.ok){
           throw new Error("Could not retreive products")
@@ -20,7 +19,7 @@ export default function Products(){
 
         const resData = await response.json();
         setProducts(resData);
-        console.log(resData)
+        console.log("hello")
         setLoading(false);
       } catch(error){
         setLoading(false);
@@ -41,16 +40,14 @@ export default function Products(){
     <div>
       <h2>Products</h2>
       <ul>
-        <li>
-          {products.map(product => (
-            <div key={product.id}>
-              <h3>{product.name}</h3>
-              <h4>{product.name}</h4>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
-            </div>
-          ))}
-        </li>
+        {products.map(product => (
+          <li key={product.id}>
+            <h3>{product.name}</h3>
+            <h4>{product.name}</h4>
+            <p>{product.description}</p>
+            <p>{product.price}</p>
+          </li>
+        ))}
       </ul>
     </div>
   )
