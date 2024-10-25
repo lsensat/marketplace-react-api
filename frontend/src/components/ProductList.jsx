@@ -22,6 +22,7 @@ export default function Products(){
         console.log("hello")
         setLoading(false);
       } catch(error){
+        setError({message: error.message || "Could not retreive products"})
         setLoading(false);
       }
     }
