@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Card from "../Card/Card.jsx";
 
 export default function Products(){
 
@@ -40,12 +41,11 @@ export default function Products(){
       <h2>Products</h2>
       <div className="product-card">
         {products.map(product => (
-          <div key={product.id}>
-            <h3>{product.name}</h3>
-            <h4>{product.name}</h4>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-          </div>
+          <Card key={product.id}
+            title={product.name}
+            description={product.description}
+            price={product.price}
+          />
         ))}
       </div>
     </div>
